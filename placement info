@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Karpagam Placement Info</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: sans-serif;
+    }
+    section {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 20px;
+    }
+    .home {
+      background: linear-gradient(to right, #a5b4fc, #bfdbfe);
+    }
+    .table-section {
+      background-color: #fef3c7;
+    }
+    .chart-section {
+      background-color: #d1fae5;
+    }
+    button {
+      margin-top: 30px;
+      padding: 15px 30px;
+      font-size: 18px;
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #1e3a8a;
+    }
+    table {
+      margin-top: 20px;
+      border-collapse: collapse;
+      width: 80%;
+      background: #fff;
+      box-shadow: 0 0 10px #ccc;
+    }
+    th, td {
+      padding: 15px;
+      border: 1px solid #000;
+    }
+    th {
+      background-color: #4f46e5;
+      color: white;
+    }
+    form {
+      margin-top: 30px;
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    input, textarea {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    form button {
+      background-color: #16a34a;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Section 1: Home -->
+  <section class="home" id="home">
+    <h1>Welcome to Karpagam College Placement Info</h1>
+    <button onclick="document.getElementById('table').scrollIntoView()">Karpagam College of Engineering</button>
+  </section>
+
+  <!-- Section 2: Table -->
+  <section class="table-section" id="table">
+    <h2>Placement Percentage - Last 5 Years</h2>
+    <table>
+      <tr><th>Year</th><th>Placement %</th></tr>
+      <tr><td>2019</td><td>85%</td></tr>
+      <tr><td>2020</td><td>88%</td></tr>
+      <tr><td>2021</td><td>91%</td></tr>
+      <tr><td>2022</td><td>94%</td></tr>
+      <tr><td>2023</td><td>96%</td></tr>
+    </table>
+    <button onclick="document.getElementById('chart').scrollIntoView()">Next - Pie Chart</button>
+  </section>
+
+  <!-- Section 3: Chart + Feedback Form -->
+  <section class="chart-section" id="chart">
+    <h2>Placement Pie Chart</h2>
+    <canvas id="placementChart" width="400" height="400"></canvas>
+
+    <h3 style="margin-top: 50px;">Share Your Feedback</h3>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Feedback" required rows="4"></textarea>
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+  <script>
+    const ctx = document.getElementById('placementChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: ['2019', '2020', '2021', '2022', '2023'],
+        datasets: [{
+          data: [85, 88, 91, 94, 96],
+          backgroundColor: [
+            '#f87171', '#fbbf24', '#34d399', '#60a5fa', '#a78bfa'
+          ],
+          borderColor: '#fff',
+          borderWidth: 2
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'bottom'
+          }
+        }
+      }
+    });
+
+    // Feedback
+    const form = document.querySelector("form");
+    form.addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("Thank you for your feedback!");
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
